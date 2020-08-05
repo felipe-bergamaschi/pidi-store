@@ -1,0 +1,15 @@
+{
+   "require": {
+      "slim/slim": "4.*",
+      "slim/psr7": "^1.1",
+      "rain/raintpl": "3.*",
+      "ramsey/uuid": "^4.0"
+   },
+   "autoload": {
+      "psr-4": {
+         "Controllers\\": "app\\controllers",
+         "Models\\": "app\\models",
+         "DB\\": "app\\db"
+      }
+  }
+}

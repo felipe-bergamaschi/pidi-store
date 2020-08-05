@@ -1,0 +1,204 @@
+<style>
+
+.product-men img {
+    width: 70%;
+    margin-bottom: 16px;
+}
+
+</style>
+
+{include="initial-slides"}
+
+<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+   
+   <div class="container-fluid">
+   
+      <div class="inner-sec-shop px-lg-4 px-3">
+         
+         <h3 class="tittle-w3layouts my-lg-4 my-4"> 
+            Novidades </h3>
+         
+         <div class="row">
+
+            {loop="$productList"}
+
+               <a href="/product-details/{$value._id}">
+
+                  <div class="col-md-3 product-men women_two">
+                     
+                     <div class="product-googles-info googles">
+                        
+                        <div class="men-pro-item">
+                           
+                           <div class="men-thumb-item">
+                           
+                              <img src="http://tibia.xyz/assets/img/tibia.png" class="img-fluid" alt="{$value.qtd} {$value.product_name}">
+
+                              <span class="product-new-top">Novo</span>
+                           
+                           </div>
+                           
+                           <div class="item-info-product">
+
+                              <div class="info-product-price">
+                                 <div class="grid_meta">
+                                    <div class="product_price">
+                                       <h4>
+                                          <a href="/product-details/{$value._id}"> {$value.qtd} {$value.product_name} </a>
+                                       </h4>
+                                       <div class="grid-price mt-2">
+                                          <span class="money format-price">{$value.value}</span>
+                                       </div>
+                                    </div>
+                                    <ul class="stars">
+                                       <li>
+                                          <a href="#">
+                                             <i class="fa fa-star" aria-hidden="true"></i>
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="#">
+                                             <i class="fa fa-star" aria-hidden="true"></i>
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="#">
+                                             <i class="fa fa-star" aria-hidden="true"></i>
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="#">
+                                             <i class="fa fa-star" aria-hidden="true"></i>
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="#">
+                                             <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                          </a>
+                                       </li>
+                                    </ul>
+                                 </div>
+                                 <div class="googles single-item hvr-outline-out">
+
+                                    
+                                    <a href="/product-details/{$value._id}">
+                                       <button type="submit" class="googles-cart pgoogles-cart">
+                                          
+                                          <i class="fas fa-cart-plus"></i>
+                                       </button>
+                                    </a>
+
+                                 </div>
+                              </div>
+                           
+                              <div class="clearfix"></div>
+                           
+                           </div>
+                        
+                        </div>
+                     
+                     </div>
+                  
+                  </div>
+
+               </a>
+
+            {/loop}
+         
+         </div>
+         
+         <!-- /grids -->
+         <div class="bottom-sub-grid-content py-lg-5 py-3">
+            
+            <div class="row">
+               
+               <div class="col-lg-4 bottom-sub-grid text-center">
+                  
+                  <div class="bt-icon">
+
+                     <span class="far fa-hand-paper"></span>
+                  </div>
+
+                  <h4 class="sub-tittle-w3layouts my-lg-4 my-3">
+                     Satisfação Garantida
+                  </h4>
+                  <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                  
+               </div>
+
+               <div class="col-lg-4 bottom-sub-grid text-center">
+                  <div class="bt-icon">
+                     <span class="fas fa-rocket"></span>
+                  </div>
+
+                  <h4 class="sub-tittle-w3layouts my-lg-4 my-3">Entrega rápida</h4>
+                  <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                  
+               </div>
+
+               <div class="col-lg-4 bottom-sub-grid text-center">
+                  <div class="bt-icon">
+                     <span class="far fa-sun"></span>
+                  </div>
+
+                  <h4 class="sub-tittle-w3layouts my-lg-4 my-3">Proteção Garantida</h4>
+                  <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                  
+               </div>
+               
+            </div>
+         
+         </div>
+         <!-- //grids -->
+         <!-- /clients-sec -->
+         <div class="testimonials p-lg-5 p-3 mt-4">
+            <div class="row last-section">
+               
+               <div class="col-lg-3 footer-top-w3layouts-grid-sec">
+                  <div class="mail-grid-icon text-center">
+                     <i class="fas fa-gift"></i>
+                  </div>
+                  <div class="mail-grid-text-info">
+                     <h3>PRODUTO GENUÍNO</h3>
+                     <p>Lorem ipsum dolor sit amet, consectetur</p>
+                  </div>
+               </div>
+               
+               <div class="col-lg-3 footer-top-w3layouts-grid-sec">
+                  <div class="mail-grid-icon text-center">
+                     <i class="fas fa-shield-alt"></i>
+                  </div>
+                  <div class="mail-grid-text-info">
+                     <h3>PRODUTOS SEGUROS</h3>
+                     <p>Lorem ipsum dolor sit amet, consectetur</p>
+                  </div>
+               </div>
+               
+               <div class="col-lg-3 footer-top-w3layouts-grid-sec">
+                  <div class="mail-grid-icon text-center">
+                     <i class="fas fa-dollar-sign"></i>
+                  </div>
+                  <div class="mail-grid-text-info">
+                     <h3>Dinheiro na entrega</h3>
+                     <p>Lorem ipsum dolor sit amet, consectetur</p>
+                  </div>
+               </div>
+               
+               <div class="col-lg-3 footer-top-w3layouts-grid-sec">
+                  <div class="mail-grid-icon text-center">
+                     <i class="fas fa-truck"></i>
+                  </div>
+                  <div class="mail-grid-text-info">
+                     <h3>Entrega Fácil</h3>
+                     <p>Lorem ipsum dolor sit amet, consectetur</p>
+                  </div>
+               </div>
+         
+            </div>
+         </div>
+         <!-- //clients-sec -->
+      </div>
+   
+   </div>
+
+</section>	

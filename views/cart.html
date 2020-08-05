@@ -1,0 +1,265 @@
+<link href="http://tibia.xyz/assets/css/checkout.css" rel='stylesheet' type='text/css' />
+
+{if="$msgError != ''"}
+<div class="black-alert">
+   
+   <div class="black-alert-text">
+      
+      <i class="material-icons material-error">error</i>
+      <p>{$msgError}</p>
+
+   </div>
+
+</div>
+{/if}
+
+{if="$msgSuccess != ''"}
+<div class="black-alert">
+    
+    <div class="black-alert-text">
+        
+        <i class="material-icons material-success">check_circle</i>
+        <p>{$msgSuccess}</p>
+
+    </div>
+
+</div>
+{/if}
+
+<div class="banner_inner" style="background: url(http://tibia.xyz/assets/img/2.jpg)no-repeat 0px -55px;">
+   <div class="services-breadcrumb">
+      <div class="inner_breadcrumb">
+
+         <ul class="short">
+            <li>
+               <a href="/">Início</a>
+               <i>|</i>
+            </li>
+            <li>Carrinho</li>
+         </ul>
+      </div>
+   </div>
+
+</div>
+
+<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+
+   <div class="container">
+
+      <div class="inner-sec-shop px-lg-4 px-3">
+         
+         <h3 class="tittle-w3layouts my-lg-4 mt-3"> Carrinho </h3>
+         
+         <div class="checkout-right">
+            
+            <h4>
+               Sua lista de produtos
+            </h4>
+            
+            <table class="timetable_sub">
+            
+               <thead>
+                  <tr>
+                     <!-- <th>SL No.</th> -->
+                     <th>Produto</th>
+                     <th>Nome do produto</th>
+                     <th>Personagem</th>
+                     <th>Quantidade</th>
+
+                     <th>Preço</th>
+                     <th>Remover</th>
+                  </tr>
+               </thead>
+               
+               <tbody>
+                  
+                  {loop="$product_list"}
+
+                     <tr class="rem1">
+                        
+                        <!-- <td class="invert"> {$value._id} </td> -->
+                        
+                        <td class="invert-image">
+                           <a >
+                              <img src="http://tibia.xyz/assets/img/tibia.png" alt=" " class="img-responsive" style="width: 80px; height: 80px; object-fit: contain;">
+                           </a>
+                        </td>
+
+                        <td class="invert"> {$value.qtd} {$value.product_name}   </td>
+
+                        <td class="invert"> {$value.player_id} </td>
+
+                        <td class="invert">
+                           
+                           <select id="{$value._id}" name="amout" class="frm-field required sect" style="padding: 5px 21px;" onchange="updateCart(this)">
+                              
+                              <option 
+                                 {if="$value.amout == 1"}
+                                    selected
+                                 {/if} 
+                                 value="1"
+                              >
+                                 1 unidades
+                              </option>
+                              
+                              <option 
+                                 {if="$value.amout == 2"}
+                                    selected
+                                 {/if} 
+                                 value="2"
+                              >
+                                 2 unidades
+                              </option>
+                              
+                              <option 
+                                 {if="$value.amout == 3"}
+                                    selected
+                                 {/if} 
+                                 value="3"
+                              >
+                                 3 unidades
+                              </option>
+
+                              <option 
+                                 {if="$value.amout == 4"}
+                                    selected
+                                 {/if} 
+                                 value="4"
+                              >
+                                 4 unidades
+                              </option>
+
+                              <option 
+                                 {if="$value.amout == 5"}
+                                    selected
+                                 {/if} 
+                                 value="5"
+                              >
+                                 5 unidades
+                              </option>
+
+                              <option 
+                                 {if="$value.amout == 6"}
+                                    selected
+                                 {/if} 
+                                 value="6"
+                              >
+                                 6 unidades
+                              </option>
+
+                              <option 
+                                 {if="$value.amout == 7"}
+                                    selected
+                                 {/if} 
+                                 value="7"
+                              >
+                                 7 unidades
+                              </option>
+
+                              <option 
+                                 {if="$value.amout == 8"}
+                                    selected
+                                 {/if} 
+                                 value="8"
+                              >
+                                 8 unidades
+                              </option>
+
+                              <option 
+                                 {if="$value.amout == 9"}
+                                    selected
+                                 {/if} 
+                                 value="9"
+                              >
+                                 9 unidades
+                              </option>
+                              
+                              <option 
+                                 {if="$value.amout == 10"}
+                                    selected
+                                 {/if} 
+                                 value="10"
+                              >
+                                 10 unidades
+                              </option>
+
+                           </select>
+                        </td>
+
+                        <td class="invert format-price">{$value.value}</td>
+
+                        <td class="invert">
+                           
+                           <a href="/my-cart/{$value._id}/delete">
+                           
+                              <div class="rem">
+                                 <div class="close3" style="background-image: url(/assets/img/close_1.jpg);"> </div>
+                              </div>
+                           
+                           </a>
+
+                        </td>
+
+                     </tr>
+                  
+                  {/loop}
+
+               </tbody>
+         
+            </table>
+         
+         </div>
+         
+         <div class="checkout-left row" style="width: 100%; display: flex; justify-content: flex-end;">
+            
+            <div class="col-md-4 checkout-left-basket" style="max-width: 400px;
+            flex: 1;">
+               
+               <ul>
+                  
+                  {loop="$product_list"}
+
+                     <li>
+                        {$value.qtd} {$value.product_name}
+                        <i>-</i>
+                        <span class="format-price"> 
+                           {function="sumValue($value.value, $value.amout)"} 
+                        </span>
+                     </li>
+                     
+                  {/loop} 
+                  
+                  <li class="total">
+                     Total
+                     <i>-</i>
+                     <span class="format-price">{$total_price}</span>
+                  </li>
+               
+               </ul>
+               
+               <a href="#">
+                  <h4>
+                     Finalizar compra
+                  </h4>
+               </a>
+            
+            </div>
+            
+         </div>
+
+      </div>
+
+   </div>
+</section>
+
+<script>
+
+function updateCart(e){
+
+   const data = e.id + "-" + e.options[e.selectedIndex].value
+
+   location.href = "/my-cart/"+ data +"/update"
+
+}
+
+</script>

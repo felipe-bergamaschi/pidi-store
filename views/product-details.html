@@ -1,0 +1,263 @@
+{if="$msgError != ''"}
+<div class="black-alert">
+   
+   <div class="black-alert-text">
+      
+      <i class="material-icons material-error">error</i>
+      <p>{$msgError}</p>
+
+   </div>
+
+</div>
+{/if}
+
+{if="$msgSuccess != ''"}
+<div class="black-alert">
+    
+    <div class="black-alert-text">
+        
+        <i class="material-icons material-success">check_circle</i>
+        <p>{$msgSuccess}</p>
+
+    </div>
+
+</div>
+{/if}
+
+<div class="banner_inner" style="background: url(/assets/img/1.jpg)no-repeat 0px -55px;">
+   <div class="services-breadcrumb">
+      <div class="inner_breadcrumb">
+
+         <ul class="short">
+            
+            <li>
+               <a href="/">Início</a>
+               <i>|</i>
+            </li>
+            
+            <li>Detalhes do produto</li>
+         
+         </ul>
+      
+      </div>
+   </div>
+</div>
+
+<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+   
+   <div class="container">
+   
+      <div class="inner-sec-shop pt-lg-4 pt-3">
+      
+         <div class="row">
+            
+            <div class="col-lg-4 single-right-left ">
+               
+               <div class="grid images_3_of_2">
+                  
+                  <div class="flexslider1">
+   
+                     <ul class="slides">
+                        
+                        <li 
+                           data-thumb="http://tibia.xyz/assets/img/tibia.png"
+                           style="list-style: none;"
+                        >
+                           
+                           <div class="thumb-image"> 
+                              
+                              <img src="http://tibia.xyz/assets/img/tibia.png" data-imagezoom="true" class="img-fluid" alt=" "> 
+                           
+                           </div>
+                        
+                        </li>
+                     
+                     </ul>
+                     
+                     <div class="clearfix"></div>
+                  
+                  </div>
+               
+               </div>
+            
+            </div>
+            
+            <div class="col-lg-8 single-right-left simpleCart_shelfItem">
+               
+               <h3>{$productDetails.qtd} {$productDetails.product_name}</h3>
+               
+               <p><span class="item_price format-price">{$productDetails.value}</span>
+                  <!-- <del>$70,00</del> -->
+               </p>
+             
+               <div class="description">
+                  
+                  <h5>Breve Descrição do produto (opicional)</h5>
+                  
+               </div>
+
+               <form action="/add-cart" method="POST">
+
+                  <div class="color-quality">
+
+                     <div class="color-quality-right" style="margin-bottom: 16px;">
+                     
+                        <h5>Nome do personagem</h5>
+
+                        <input name="player-id" class="frm-field required sect" maxlength="70" required>
+                     
+                     </div>
+
+                     <div class="color-quality-right" style="margin-bottom: 16px;">
+                     
+                        <h5>Unidades</h5>
+
+                        <select name="amout" class="frm-field required sect">
+                           
+                           <option value="1" selected>1 unidades</option>
+                           <option value="2">2 unidades</option> 
+                           <option value="3">3 unidades</option>					
+                           <option value="4">4 unidades</option>								
+                           <option value="5">5 unidades</option>								
+                           <option value="6">6 unidades</option>								
+                           <option value="7">7 unidades</option>								
+                           <option value="8">8 unidades</option>								
+                           <option value="9">9 unidades</option>								
+                           <option value="10">10 unidades</option>								
+                  
+                        </select>
+                  
+                     </div>
+                  
+                  </div>
+                  
+                  <div class="occasion-cart">
+                     <div class="googles single-item singlepage">
+                        
+                        <input type="hidden" name="product-id" value="{$productID}"> 
+                        <button type="submit" class="googles-cart pgoogles-cart">
+                           Adicionar ao carrinho
+                        </button>
+
+                     </div>
+                  </div>
+
+               </form>
+               
+               <!-- <ul class="footer-social text-left mt-lg-4 mt-3">
+                     <li>Compartilhar com : </li>
+                     <li class="mx-2">
+                        <a href="#">
+                           <span class="fab fa-facebook-f"></span>
+                        </a>
+                     </li>
+                     <li class="mx-2">
+                        <a href="#">
+                           <span class="fab fa-twitter"></span>
+                        </a>
+                     </li>
+                     <li class="mx-2">
+                        <a href="#">
+                           <span class="fab fa-google-plus-g"></span>
+                        </a>
+                     </li>
+                     <li class="mx-2">
+                        <a href="#">
+                           <span class="fab fa-linkedin-in"></span>
+                        </a>
+                     </li>
+                     <li class="mx-2">
+                        <a href="#">
+                           <span class="fas fa-rss"></span>
+                        </a>
+                     </li>
+                     
+               </ul> -->
+
+            </div>
+            
+         </div>
+      
+      </div>
+   
+   </div>
+   
+   <div class="container-fluid">
+
+      <div class="slider-img mid-sec mt-lg-5 mt-2 px-lg-5 px-3">
+
+         <h3 class="tittle-w3layouts text-left my-lg-4 my-3">Outros produtos</h3>
+         
+         <div class="mid-slider">
+            
+            <div class="owl-carousel owl-theme row">
+               
+               {loop="$productList"}
+
+                  <div class="item">
+                     
+                     <a href="/product-details/{$value._id}">
+
+                        <div class="gd-box-info text-center">
+                           
+                           <div class="product-men women_two bot-gd">
+                              
+                              <div class="product-googles-info slide-img googles">
+                                 
+                                 <div class="men-pro-item">
+                                    
+                                    <div class="men-thumb-item">
+                                       
+                                       <img src="http://tibia.xyz/assets/img/tibia.png" class="img-fluid" alt="">
+                                       
+                                       <span class="product-new-top">novo</span>
+                                    
+                                    </div>
+                                    
+                                    <div class="item-info-product">
+
+                                       <div class="info-product-price">
+                                          
+                                          <div class="grid_meta">
+                                          
+                                             <div class="product_price">
+                                                
+                                                <h4>
+                                                   <a href="/product-details/{$value._id}"> {$value.qtd} {$value.product_name} </a>
+                                                </h4>
+                                          
+                                                <div class="grid-price mt-2">
+                                                   <span class="money">R$ {$value.value}</span>
+                                                </div>
+                                          
+                                             </div>
+                                             
+                                          </div>
+                                          
+                                       </div>
+
+                                    </div>
+                                 
+                                 </div>
+                              
+                              </div>
+                           
+                           </div>
+                        
+                        </div>
+
+                     </a>
+                  
+                  </div>
+
+               {/loop}
+               
+            </div>
+         
+         </div>
+      
+      </div>
+
+   </div>
+
+</section>
