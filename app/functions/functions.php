@@ -19,6 +19,7 @@ function totalPrice($values){
    }
 
    $prices = explode("/", $prices);
+   
    array_pop($prices);
 
    $prices = array_sum($prices);
