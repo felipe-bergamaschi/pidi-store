@@ -131,7 +131,7 @@
 </script>
 <!-- carousel -->
 <!-- Count-down -->
-<script src="http://tibia.xyz/assets/js/simplyCountdown.js"></script>
+<!-- <script src="http://tibia.xyz/assets/js/simplyCountdown.js"></script>
 <link href="http://tibia.xyz/assets/css/simplyCountdown.css" rel='stylesheet' type='text/css' />
 <script>
    var d = new Date();
@@ -140,7 +140,7 @@
       month: d.getMonth() + 2,
       day: 25
    });
-</script>
+</script> -->
 <!--// Count-down -->
 <script src="http://tibia.xyz/assets/js/owl.carousel.js"></script>
 <script>
@@ -231,6 +231,55 @@
    $(".black-alert").animate({"top":"0","transition":"300ms"}).delay(5000).animate({"transition":".5s","top":"-500px"});
 
 </script>
+
+
+<script src="http://tibia.xyz/assets/js/easy-responsive-tabs.js"></script>
+<script>
+   $(document).ready(function () {
+      $('#horizontalTab').easyResponsiveTabs({
+         type: 'default', //Types: default, vertical, accordion           
+         width: 'auto', //auto or any width like 600px
+         fit: true, // 100% fit in a container
+         closed: 'accordion', // Start closed if in accordion view
+         activate: function (event) { // Callback function if tab is switched
+            var $tab = $(this);
+            var $info = $('#tabInfo');
+            var $name = $('span', $info);
+            $name.text($tab.text());
+            $info.show();
+         }
+      });
+      $('#verticalTab').easyResponsiveTabs({
+         type: 'vertical',
+         width: 'auto',
+         fit: true
+      });
+   });
+</script>
+
+<!-- credit-card -->
+<script type="text/javascript" src="http://tibia.xyz/assets/js/creditly.js"></script>
+<link rel="stylesheet" href="http://tibia.xyz/assets/css/creditly.css" type="text/css" media="all" />
+
+<script type="text/javascript">
+   $(function () {
+      var creditly = Creditly.initialize(
+         '.creditly-wrapper .expiration-month-and-year',
+         '.creditly-wrapper .credit-card-number',
+         '.creditly-wrapper .security-code',
+         '.creditly-wrapper .card-type');
+
+      $(".creditly-card-form .submit").click(function (e) {
+         e.preventDefault();
+         var output = creditly.validate();
+         if (output) {
+            // Your validated credit card output
+            console.log(output);
+         }
+      });
+   });
+</script>
+<!-- //credit-card -->
 </body>
 
 </html>

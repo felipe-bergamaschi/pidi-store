@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <title>Pidi Store</title>
+
+   <link rel="stylesheet" href="http://tibia.xyz/assets/css/signin.css">
+   
+   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+   
+   <div id="warpper">
+
+      <div class="box">
+
+         <div class="box-image">
+
+            <img src="http://tibia.xyz/assets/img/tibia.png" alt="">
+
+         </div>
+
+         <div class="box-header">
+
+            <div class="title">
+               Login
+            </div>
+
+         </div>
+
+         <div class="box-body">
+
+            <form action="/signin" method="POST">
+
+               <div class="form-group">
+                            
+                  <label for="email">Email</label>
+                  
+                  <input type="email" name="email" id="email" class="style-input input" placeholder="Digite seu email" maxlength="100" autofocus="" required="">
+                  
+                  <span class="underline"></span>
+                  
+                  <i class="material-icons icon">mail</i>
+              
+               </div>
+
+               <div class="form-group">
+                            
+                  <label for="password">Senha</label>
+                  
+                  <input type="password" name="password" id="password" class="style-input input" placeholder="Digite sua senha" maxlength="20" required="">
+                  
+                  <span class="underline"></span>
+                  
+                  <i class="material-icons icon">vpn_key</i>
+              
+               </div>
+
+               <button type="submit" class="default-btn">
+                  confirmar
+               </button>
+
+            </form>
+
+         </div>
+
+         <div class="box-footer">
+
+            <a href="/">Início</a>
+
+            <a href="/signup">Cadastro</a>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <script src="http://tibia.xyz/assets/js/jquery-2.2.3.min.js"></script>
+
+   <script>
+
+      $(".black-alert").animate({"top":"0","transition":"300ms"}).delay(5000).animate({"transition":".5s","top":"-500px"});
+   
+   </script>
+
+</body>
+</html>

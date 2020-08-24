@@ -3,7 +3,8 @@
       "slim/slim": "4.*",
       "slim/psr7": "^1.1",
       "rain/raintpl": "3.*",
-      "ramsey/uuid": "^4.0"
+      "ramsey/uuid": "^4.0",
+      "mercadopago/dx-php": "^2.1"
    },
    "autoload": {
       "psr-4": {

@@ -1,0 +1,343 @@
+<link href="http://tibia.xyz/assets/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css' />
+
+<style>
+
+.finish {
+    display: block;
+    position: relative;
+    padding: 12px 43px 12px;
+    letter-spacing: 3px;
+    background: #212121;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+</style>
+
+<div class="banner_inner" style="background: url(http://tibia.xyz/assets/img/2.jpg)no-repeat 0px -55px;">
+   <div class="services-breadcrumb">
+      <div class="inner_breadcrumb">
+
+         <ul class="short">
+            <li>
+               <a href="/">Início</a>
+               <i>|</i>
+            </li>
+            <li>Pagamento</li>
+         </ul>
+      </div>
+   </div>
+
+</div>
+
+<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+   
+   <div class="container">
+      
+      <div class="inner-sec-shop px-lg-4 px-3">
+         
+         <h3 class="tittle-w3layouts my-lg-4 mt-3">Payment </h3>
+
+         <div class="responsive_tabs">
+            
+            <div id="horizontalTab">
+               
+               <ul class="resp-tabs-list">
+                  
+                  <li>Depósito bancário</li>
+                  <li>Cartão de crédito</li>
+                  <li>Boleto bancário</li>
+               
+               </ul>
+               
+               <div class="resp-tabs-container">
+
+                  <div class="tab3">
+                     <div class="pay_info">
+                        
+                        <form action="/payment" method="post" id="pay" name="pay" class="creditly-card-form agileinfo_form">
+                           
+                           <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+                              <div class="credit-card-wrapper">
+                                 <div class="first-row form-group">
+                                    
+                                    <div class="controls">
+                                       <label class="control-label">Nome impresso no cartão</label>
+                                       <input class="billing-address-name form-control" type="text" placeholder="John Smith" id="cardholderName" data-checkout="cardholderName"
+                                       value="Ari gustavo s santos">
+                                    </div>
+
+                                    <div class="controls">
+                                       <label class="control-label">CPF (somente números)</label>
+                                       <input class="billing-address-name form-control" type="text" placeholder="&#149;&#149;&#149;&#149;&#149;&#149;&#149;&#149;&#149;&#149;&#149;" maxlength="11" id="docNumber" data-checkout="docNumber"
+                                       value="14177722049">
+
+                                    </div>
+
+                                    <div class="controls">
+                                       <label class="control-label">Email</label>
+                                       <input class="billing-address-name form-control" type="text" id="email" name="email" value="test@test.com" required>
+
+                                    </div>
+                                    
+                                    <div class="w3_agileits_card_number_grids">
+                                       
+                                       <div class="w3_agileits_card_number_grid_left">
+                                          <div class="controls">
+                                             <label class="control-label">Número do cartão</label>
+                                             <input class="number credit-card-number form-control" type="text" inputmode="numeric" autocomplete="cc-number"
+                                                   autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;" id="cardNumber" data-checkout="cardNumber" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off
+                                                   value="5031 7557 3453 0604	">
+                                          </div>
+                                       </div>
+                                       
+                                       
+                                       <div class="w3_agileits_card_number_grid_right">
+                                          <div class="controls">
+                                             <label class="control-label">CVV</label>
+                                             <input class="security-code form-control" Â· inputmode="numeric" type="text"  placeholder="&#149;&#149;&#149;" id="securityCode" data-checkout="securityCode" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off
+                                             value="123">
+                                          </div>
+                                       </div>
+                                       <div class="clear"> </div>
+                                    </div>
+
+                                    <div class="controls">
+                                       <label class="control-label">Mês de vencimento</label>
+                                       <input class=" form-control" type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off
+                                       value="11">
+                                    </div>
+
+                                    <div class="controls">
+                                       <label class="control-label">Ano de vencimento</label>
+                                       <input class=" form-control" type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off
+                                       value="25">
+                                    </div>
+
+                                 </div>
+
+                                 <input type="hidden" name="description" id="description" value="Ítem selecionado"/>
+                                 <input type="hidden" name="transaction_amount" id="transaction_amount" value="100"/>
+
+                                 <input type="hidden" id="docType" data-checkout="docType" value="CPF"/>
+
+                                 <input type="hidden" name="payment_method_id" id="payment_method_id"/>
+
+                                 <input class="finish" type="submit" value="pagar">
+
+                              </div>
+                           </section>
+
+                        </form>
+
+                     </div>
+                  </div>
+
+                  <div class="tab1">
+                     
+                     <div class="pay_info">
+                        
+                        <div class="vertical_post check_box_agile">
+                           
+                           <h5>BRADESCO</h5>
+                           
+                           <div class="checkbox">
+                             
+                              <div class="check_box_one cashon_delivery">
+                                 
+                                 <label class="anim">
+                                    <span> Agência: 1234</span>
+                                 </label>
+                                 <br>
+                                 <label class="anim">
+                                    <span> Conta: 12345678-9</span>
+                                 </label>
+                                 <br>
+                                 <label class="anim">
+                                    <span> Titular: Fulano</span>
+                                 </label><br>
+                                 <label class="anim">
+                                    <span> CPF: 123.456.789-10</span>
+                                 </label>
+                              
+                              </div>
+
+                           </div>
+                        
+                        </div>
+                        
+                     </div>
+
+                  </div>
+
+                  <div class="tab2">
+                     <div class="pay_info">
+                        
+                        <form action="/payment" method="post" id="pay" name="pay" class="creditly-card-form agileinfo_form">
+                           
+                           <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+                              <div class="credit-card-wrapper">
+                                 <div class="first-row form-group">
+                                    
+                                    <div class="controls">
+                                       <label class="control-label">Nome impresso no cartão</label>
+                                       <input class="billing-address-name form-control" type="text" placeholder="John Smith" id="cardholderName" data-checkout="cardholderName"
+                                       value="Ari gustavo s santos">
+                                    </div>
+
+                                    <div class="controls">
+                                       <label class="control-label">CPF (somente números)</label>
+                                       <input class="billing-address-name form-control" type="text" placeholder="&#149;&#149;&#149;&#149;&#149;&#149;&#149;&#149;&#149;&#149;&#149;" maxlength="11" id="docNumber" data-checkout="docNumber"
+                                       value="14177722049">
+
+                                    </div>
+
+                                    <div class="controls">
+                                       <label class="control-label">Email</label>
+                                       <input class="billing-address-name form-control" type="text" id="email" name="email" value="test@test.com" required>
+
+                                    </div>
+                                    
+                                    <div class="w3_agileits_card_number_grids">
+                                       
+                                       <div class="w3_agileits_card_number_grid_left">
+                                          <div class="controls">
+                                             <label class="control-label">Número do cartão</label>
+                                             <input class="number credit-card-number form-control" type="text" inputmode="numeric" autocomplete="cc-number"
+                                                   autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;" id="cardNumber" data-checkout="cardNumber" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off
+                                                   value="5031 7557 3453 0604	">
+                                          </div>
+                                       </div>
+                                       
+                                       
+                                       <div class="w3_agileits_card_number_grid_right">
+                                          <div class="controls">
+                                             <label class="control-label">CVV</label>
+                                             <input class="security-code form-control" Â· inputmode="numeric" type="text"  placeholder="&#149;&#149;&#149;" id="securityCode" data-checkout="securityCode" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off
+                                             value="123">
+                                          </div>
+                                       </div>
+                                       <div class="clear"> </div>
+                                    </div>
+
+                                    <div class="controls">
+                                       <label class="control-label">Mês de vencimento</label>
+                                       <input class=" form-control" type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off
+                                       value="11">
+                                    </div>
+
+                                    <div class="controls">
+                                       <label class="control-label">Ano de vencimento</label>
+                                       <input class=" form-control" type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off
+                                       value="25">
+                                    </div>
+
+                                 </div>
+
+                                 <input type="hidden" name="description" id="description" value="Ítem selecionado"/>
+                                 <input type="hidden" name="transaction_amount" id="transaction_amount" value="100"/>
+
+                                 <input type="hidden" id="docType" data-checkout="docType" value="CPF"/>
+
+                                 <input type="hidden" name="payment_method_id" id="payment_method_id"/>
+
+                                 <input class="finish" type="submit" value="pagar">
+
+                              </div>
+                           </section>
+
+                        </form>
+
+                     </div>
+                  </div>
+
+                  
+                  
+               </div>
+           
+            </div>
+         
+         </div>
+
+      </div>
+
+   </div>
+
+</section>
+
+<script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>	
+
+<script>
+
+window.Mercadopago.setPublishableKey("{$public_key}");
+
+//window.Mercadopago.getIdentificationTypes();
+
+// PAYMENT METHODS
+document.getElementById('cardNumber').addEventListener('keyup', guessPaymentMethod);
+document.getElementById('cardNumber').addEventListener('change', guessPaymentMethod);
+
+function guessPaymentMethod(event) {
+    let cardnumber = document.getElementById("cardNumber").value;
+
+    if (cardnumber.length >= 6) {
+        let bin = cardnumber.substring(0,6);
+        window.Mercadopago.getPaymentMethod({
+            "bin": bin
+        }, setPaymentMethod);
+    }
+};
+
+function setPaymentMethod(status, response) {
+    if (status == 200) {
+        let paymentMethodId = response[0].id;
+        let element = document.getElementById('payment_method_id');
+        element.value = paymentMethodId;
+    } else {
+        alert(`payment method info error: ${response}`);
+    }
+}
+
+
+// CREATE TOKEN TO CARD
+doSubmit = false;
+document.querySelector('#pay').addEventListener('submit', doPay);
+
+function doPay(event){
+    event.preventDefault();
+    if(!doSubmit){
+        var $form = document.querySelector('#pay');
+
+        window.Mercadopago.createToken($form, sdkResponseHandler);
+
+        return false;
+    }
+};
+
+function sdkResponseHandler(status, response) {
+    if (status != 200 && status != 201) {
+        alert("verify filled data");
+    }else{
+        var form = document.querySelector('#pay');
+        var card = document.createElement('input');
+        card.setAttribute('name', 'token');
+        card.setAttribute('type', 'hidden');
+        card.setAttribute('value', response.id);
+        form.appendChild(card);
+        doSubmit=true;
+        form.submit();
+    }
+};
+
+
+</script>

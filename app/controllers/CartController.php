@@ -44,13 +44,13 @@ class CartController {
             cart.player_id,
             cart.product_id,
             cart.amout,
-            productS.product_name,
-            productS.value,
-            productS.qtd
+            products.product_name,
+            products.value,
+            products.qtd
          FROM 
             cart
          JOIN
-            productS
+            products
          WHERE
             session_id = :session_id &&
             products._id = cart.product_id &&

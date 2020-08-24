@@ -27,3 +27,39 @@ function totalPrice($values){
    return $prices;
 
 }
+
+function validateEmail($email){
+        
+   if (!preg_match('/^[A-Za-z0-9_\.\-]+@[a-z0-9_\.\-]*[a-z0-9_\.\-]+\.[a-z]{2,4}$/', $email)) {
+           
+      return false;
+   
+   }   
+
+   return true;
+
+}
+
+function validatePassword($password){
+   
+   if(trim(strlen($password)) >= 21){
+       
+      return false;
+
+   }
+
+   return true;
+
+}
+
+function validateUsername($username){
+   
+   if(!trim(preg_match('/^[A-Za-zãÃáÁàÀêÊéÉèÈíÍìÌôÔõÕóÓòÒúÚùÙûÛçÇ ]+$/u', $username))){
+       
+      return false;
+
+   }   
+
+   return true;
+
+}

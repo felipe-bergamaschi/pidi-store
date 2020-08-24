@@ -32,10 +32,22 @@ require "app/routes/ProductDetails.php";
 // CART
 require "app/routes/Cart.php";
 
+// PAYMENT
+require "app/routes/Payment.php";
+
+// SIGNUP
+require "app/routes/Signup.php";
+
+// SIGNIN
+require "app/routes/Signin.php";
+
 // ALERTS
 require "app/functions/alerts.php";
 
 // FUNCTIONS
 require "app/functions/functions.php";
+
+// KEYS
+require "keys.php";
 
 $app->run();
