@@ -9,9 +9,17 @@ class SignupModel {
 
    public static function save(
       array $input
-   ){ 
+   ){    
 
       $uuid = Uuid::uuid1();
+
+      $options = [
+         'cost' => PASSWORD_COST
+      ];
+      
+      $password = password_hash($input["password"], PASSWORD_BCRYPT, $options);
+
+      $image = "https://api.adorable.io/avatars/150/".$uuid->toString();
 
       $sql = new Sql();
 
@@ -21,18 +29,21 @@ class SignupModel {
                uuid, 
                username, 
                email, 
-               password
+               password,
+               image
             )
          VALUES(
             :uuid, 
             :username, 
             :email, 
-            :password
+            :password,
+            :image
          )",[
             ":uuid"=>$uuid->toString(), 
             ":username"=>$input["username"], 
             ":email"=>$input["email"], 
-            ":password"=>$input["password"],
+            ":password"=>$password,
+            ":image"=>$image
          ]
       );
 

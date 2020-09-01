@@ -10,6 +10,7 @@ require 'vendor/autoload.php';
 
 const SESSION_NAME = "user-data";
 const COOKIE_NAME  = "user-id";
+const PASSWORD_COST = 10;
 
 $app = AppFactory::create();
 

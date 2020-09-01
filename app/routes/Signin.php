@@ -5,7 +5,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 use Controllers\{
    AuthController,
-   CartController
+   SigninController
 };
 
 use Models\{
@@ -20,10 +20,32 @@ $app->get('/signin', function (Request $request, Response $response, $args) {
       "footer"=>false
    ]);
 
-   $view = $page->setTpl("signin");
+   $view = $page->setTpl("signin",[
+      "msgSuccess"=>getSuccess(),
+      "msgError"=>getError()
+   ]);
       
    $response->getBody()->write("$view");
 
    return $response; 
+
+})->add(new AuthController());
+
+$app->post('/signin', function (Request $request, Response $response, $args) {
+
+   $signinController = new SigninController();
+
+   $checkInputSignin = $signinController->checkInputSignin($_POST);
+
+   if ($checkInputSignin === false){
+
+      setError('Preencha todos os dados corretamente');
+      header('location: /signin');
+      exit();
+
+   }
+
+   header('location: /');
+   exit();
 
 })->add(new AuthController());
