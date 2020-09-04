@@ -86,4 +86,23 @@ class SigninController{
 
    }
 
+   public static function sessionVerify(){
+
+      if (   
+         !isset($_SESSION[SESSION_NAME]["_id"]) ||
+         !isset($_SESSION[SESSION_NAME]["uuid"]) ||
+         !isset($_SESSION[SESSION_NAME]["email"]) ||
+         !isset($_SESSION[SESSION_NAME]["username"])
+      ){
+
+         setError('Você precisa estar autenticado para poder acessar esta página');
+         header('location: /signin');
+         exit();
+
+      }
+
+      return true;
+
+   }
+
 }

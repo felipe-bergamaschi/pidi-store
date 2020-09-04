@@ -52,7 +52,8 @@ class CartController {
          JOIN
             products
          WHERE
-            session_id = :session_id &&
+            cart.session_id = :session_id &&
+            cart.status = 0 &&
             products._id = cart.product_id &&
             productS.status = 1
          ",[
@@ -107,6 +108,24 @@ class CartController {
             ":amout"=>$amout,
             ":_id"=>$_id,
             ":session_id"=>$user_id
+         ]
+      );
+
+   }
+
+   public static function cartUpdate(){
+      
+      $sql = new Sql();
+
+      $sql->query(
+         "UPDATE 
+            cart 
+         SET 
+            status = 1 
+         WHERE 
+            session_id = :session_id
+         ",[
+            ":session_id"=>$_SESSION[SESSION_NAME]["_id"]
          ]
       );
 

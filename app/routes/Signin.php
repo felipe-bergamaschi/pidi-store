@@ -45,6 +45,19 @@ $app->post('/signin', function (Request $request, Response $response, $args) {
 
    }
 
+   $checkSignin = $signinController->checkSignin(
+      $_POST["email"],
+      $_POST["password"]
+   );
+
+   if ($checkSignin === false){
+
+      setError('Preencha todos os dados corretamente');
+      header('location: /signin');
+      exit();
+
+   }
+
    header('location: /');
    exit();
 

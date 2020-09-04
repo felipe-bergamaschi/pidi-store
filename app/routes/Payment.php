@@ -5,40 +5,78 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 use Controllers\{
    AuthController,
-   CartController
+   SigninController,
+   CartController,
+   SignoutController
 };
 
 use Models\{
    Page,
-   CartModel
+   PaymentModel
 };
 
 $app->get('/payment', function (Request $request, Response $response, $args) {
 
-   $page = new Page();
+   SigninController::sessionVerify();
 
-   $view = $page->setTpl("payment",[
-      "public_key"=>getenv("MERCADO_PAGO_PUBLIC_KEY")
-      // "product_list"=>$product_list,
-      // "total_price"=>$total_price,
-      // "msgSuccess"=>getSuccess(),
-      // "msgError"=>getError()
-   ]);
-      
-   $response->getBody()->write("$view");
-
-   return $response; 
-
-   exit;
    $cart = new CartController();
 
    $product_list = $cart->cartProductList();
 
    $total_price = totalPrice($product_list);
 
+   if ($total_price === 0){
+
+      setError('O carrinho está vazio');
+      header('location: /my-cart');
+      exit();
+
+   }
+
+   $page = new Page();
+
+   $view = $page->setTpl("payment",[
+      "public_key"=>getenv("MERCADO_PAGO_PUBLIC_KEY"),
+      "total_price"=>$total_price,
+      "email"=>$_SESSION[SESSION_NAME]["email"],
+      "msgSuccess"=>getSuccess(),
+      "msgError"=>getError()
+   ]);
+      
+   $response->getBody()->write("$view");
+
+   return $response; 
+
 })->add(new AuthController());
 
 $app->post('/payment', function (Request $request, Response $response, $args) {
+
+   SigninController::sessionVerify();
+
+   if (
+      !isset($_POST["token"]) || trim($_POST["token"]) === "" ||
+      !isset($_POST["payment_method_id"]) || trim($_POST["payment_method_id"]) === ""
+   ){
+
+      setError('Pagamento falhou, tente novamente');
+      header('location: /payment');
+      exit();
+
+   }
+
+   $cart = new CartController();
+
+   $product_list = $cart->cartProductList();
+
+   $total_price = totalPrice($product_list);
+
+   if ($total_price === 0){
+
+      setError('O carrinho está vazio');
+      header('location: /my-cart');
+      exit();
+
+   }
 
    $access_token = getenv("MERCADO_PAGO_ACCESS_TOKEN");
 
@@ -46,13 +84,13 @@ $app->post('/payment', function (Request $request, Response $response, $args) {
 
    $payment = new MercadoPago\Payment();
    
-   $payment->transaction_amount = $_POST["transaction_amount"];
+   $payment->transaction_amount = $total_price;
    $payment->token              = $_POST["token"];
    $payment->description        = "Compra na PidiStore";
    $payment->installments       = 1;
    $payment->payment_method_id  = $_POST["payment_method_id"];
    $payment->payer = array(
-      "email" => $_POST["email"]
+      "email"=>$_SESSION[SESSION_NAME]["email"]
    );
 
    $payment->save();
@@ -70,151 +108,114 @@ $app->post('/payment', function (Request $request, Response $response, $args) {
       )
    ){
 
-      echo "pagamento rejeitado";
-      exit;
+      setError('Pagamento falhou, tente novamente');
+      header('location: /payment');
+      exit();
 
    }
 
-   print_r([
+   $payment_model = new PaymentModel();
+
+   $payment_model->savePayment(
+      $_SESSION[SESSION_NAME]["uuid"],
+      $_SESSION[SESSION_NAME]["_id"],
+      $payment->id,
       $payment->status,
       $payment->status_detail,
-      $payment->id,
       $payment->date_approved
-   ]);
-   exit;
+   );
 
-   $view = $payment->status;
+   CartController::cartUpdate();
 
-   print_r($view);
-
-   $response->getBody()->write("$view");
-
-   return $response; 
+   SignoutController::deleteSession();
+   
+   setSuccess('Pagamento realizado com sucesso');
+   header('location: /profile');
+   exit();
 
 });
 
 $app->post('/payment/ticket', function (Request $request, Response $response, $args) {
 
-   $access_token = getenv("MERCADO_PAGO_ACCESS_TOKEN");
+   SigninController::sessionVerify();
 
+   if (
+      !isset($_POST["first_name"]) || trim($_POST["first_name"]) === "" ||
+      !isset($_POST["last_name"]) || trim($_POST["last_name"]) === "" ||
+      !isset($_POST["cpf"]) || trim($_POST["cpf"]) === ""
+   ){
+
+      setError('Pagamento falhou, tente novamente');
+      header('location: /payment');
+      exit();
+
+   }
+
+   $cart = new CartController();
+
+   $product_list = $cart->cartProductList();
+
+   $total_price = totalPrice($product_list);
+
+   if ($total_price === 0){
+
+      setError('O carrinho está vazio');
+      header('location: /my-cart');
+      exit();
+
+   }
+
+   $access_token = getenv("MERCADO_PAGO_ACCESS_TOKEN");
+   
    MercadoPago\SDK::setAccessToken($access_token);
+   
+   $payment_methods = MercadoPago\SDK::get("/v1/payment_methods");
 
    $payment = new MercadoPago\Payment();
    
-   $payment->transaction_amount = $_POST["transaction_amount"];
-   $payment->token              = $_POST["token"];
+   $payment->transaction_amount = $total_price;
    $payment->description        = "Compra na PidiStore";
-   $payment->installments       = 1;
-   $payment->payment_method_id  = $_POST["payment_method_id"];
+   $payment->payment_method_id  = "bolbradesco";
    $payment->payer = array(
-      "email" => $_POST["email"]
+      "email" => $_SESSION[SESSION_NAME]["email"],
+      "first_name" => $_POST["first_name"],
+      "last_name" => $_POST["last_name"],
+      "identification" => array(
+         "type" => "CPF",
+         "number" => $_POST["cpf"]
+      )
    );
 
    $payment->save();
 
    $status = $payment->status;
 
-   if (
-      !in_array(
-         $status, [
-            "approved",
-            "in_process",
-            "in_process",
-            "rejected"
-         ]
-      )
-   ){
+   if ($status != "pending"){
 
-      echo "pagamento rejeitado";
-      exit;
+      setError('Pagamento falou, tente novamente');
+      header('location: /payment');
+      exit();
 
    }
+   
+   $payment_model = new PaymentModel();
 
-   print_r([
+   $payment_model->savePayment(
+      $_SESSION[SESSION_NAME]["uuid"],
+      $_SESSION[SESSION_NAME]["_id"],
+      $payment->id,
       $payment->status,
       $payment->status_detail,
-      $payment->id,
-      $payment->date_approved
-   ]);
-   exit;
+      "N/D",
+      $payment->transaction_details->external_resource_url
+   );
 
-   $view = $payment->status;
+   CartController::cartUpdate();
 
-   print_r($view);
-
-   $response->getBody()->write("$view");
-
-   return $response; 
+   SignoutController::deleteSession();
+   
+   setSuccess('Pagamento realizado com sucesso');
+   header('location: /profile');
+   exit();
 
 });
-
-// $app->post('/add-cart', function (Request $request, Response $response, $args) {
-
-//    $cart_controller = new CartController();
-   
-//    $post_verify = $cart_controller->postVerify($_POST);
-
-//    if ($post_verify === false){
-
-//       setError('Preencha todos os dados corretamente');
-//       header('location: /product-details/'.$_POST["product-id"]);
-//       exit();
-
-//    }
-
-//    $cart_model = new CartModel();
-
-//    $cart_model->addToCart(
-//       $_SESSION[SESSION_NAME]["_id"],
-//       $_POST["player-id"],
-//       $_POST["product-id"],
-//       $_POST["amout"]
-//    );
-
-//    setSuccess('Adicionado ao carrinho');
-//    header('location: /product-details/'.$_POST["product-id"]);
-//    exit();
-
-// })->add(new AuthController());
-
-
-
-// $app->get('/my-cart/{data}/update', function (Request $request, Response $response, $args) {
-
-//    $data = explode("-", $args["data"]);
-
-//    $_id = $data[0];
-//    $amout = $data[1];
-
-//    if (!in_array($amout, [1,2,3,4,5,6,7,8,9,10])){
-
-//       setError('Informe os dados corretamente');
-//       header('location: /my-cart');
-//       exit();
-
-//    }
-
-//    $cart = new CartController();
-
-//    $cart->updateProductFromCart(
-//       $_id,
-//       $amout
-//    );
-
-//   setSuccess('Produto atualizado com sucesso');
-//   header('location: /my-cart');
-//   exit();
-
-// })->add(new AuthController());
-
-// $app->get('/my-cart/{product-id}/delete', function (Request $request, Response $response, $args) {
-
-//    $cart = new CartController();
-
-//    $cart->removeProductFromCart($args["product-id"]);
-
-//   setSuccess('Produto removido com sucesso');
-//   header('location: /my-cart');
-//   exit();
-
-// })->add(new AuthController());

@@ -16,8 +16,8 @@ class AuthController{
    ): Response {
 
 		if (
-         !isset($_SESSION[SESSION_NAME]) ||
-         !$_SESSION[SESSION_NAME]
+         !isset($_SESSION[SESSION_NAME]["_id"]) ||
+         !$_SESSION[SESSION_NAME]["_id"]
       ){
 
          if (
@@ -45,6 +45,14 @@ class AuthController{
       $response = $handler->handle($request);
       return $response;
 
-	} 
+   } 
+   
+   public static function deleteSession(){
+
+      setcookie(COOKIE_NAME, "", time() - 3600);
+
+      unset($_SESSION[SESSION_NAME]["_id"]);
+
+   }  
 
 }

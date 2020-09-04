@@ -37,7 +37,7 @@ $app->post('/add-cart', function (Request $request, Response $response, $args) {
    );
 
    setSuccess('Adicionado ao carrinho');
-   header('location: /product-details/'.$_POST["product-id"]);
+   header('location: /my-cart');
    exit();
 
 })->add(new AuthController());
@@ -54,6 +54,7 @@ $app->get('/my-cart', function (Request $request, Response $response, $args) {
       
    $view = $page->setTpl("cart",[
       "product_list"=>$product_list,
+      "product_count"=>count($product_list),
       "total_price"=>$total_price,
       "msgSuccess"=>getSuccess(),
       "msgError"=>getError()

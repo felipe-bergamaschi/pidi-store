@@ -13,7 +13,33 @@
 
 </head>
 <body>
-   
+
+   {if="$msgError != ''"}
+   <div class="black-alert">
+      
+      <div class="black-alert-text">
+         
+         <i class="material-icons material-error">error</i>
+         <p>{$msgError}</p>
+
+      </div>
+
+   </div>
+   {/if}
+
+   {if="$msgSuccess != ''"}
+   <div class="black-alert">
+      
+      <div class="black-alert-text">
+         
+         <i class="material-icons material-success">check_circle</i>
+         <p>{$msgSuccess}</p>
+
+      </div>
+
+   </div>
+   {/if}
+
    <div id="warpper">
 
       <div class="box">

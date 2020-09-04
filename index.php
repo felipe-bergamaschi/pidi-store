@@ -42,6 +42,9 @@ require "app/routes/Signup.php";
 // SIGNIN
 require "app/routes/Signin.php";
 
+// PROFILE
+require "app/routes/Profile.php";
+
 // ALERTS
 require "app/functions/alerts.php";
 
