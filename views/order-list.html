@@ -67,6 +67,7 @@
                      <th>Preço</th>
 
                      <th>Status</th>
+                     <th>Boleto</th>
                      <th>Detalhes</th>
                   </tr>
                </thead>
@@ -92,6 +93,24 @@
                         <td class="invert format-price"> {$value.amout} </td>
 
                         <td class="invert"> {function="statusReturn($value.status)"} </td>
+
+                        <td class="invert"> 
+                           
+                           {if="$value.ticket_url === 'N/D' "}
+
+                              N/D
+
+                           {else}
+
+                              <a href="{$value.ticket_url}" style="color:#868282" target="blank"> 
+                                 
+                                 Ver boleto
+                              
+                              </a>
+
+                           {/if}
+                        
+                        </td>
 
                         <td class="invert">
                            

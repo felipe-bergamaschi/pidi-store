@@ -49,3 +49,17 @@ $app->get('/password-hash', function (Request $request, Response $response, $arg
    return $response; 
 
 });
+
+$app->get('/api-whatsapp', function (Request $request, Response $response, $args) {
+
+   if (whatsappLink() === true) {
+	 	
+      header("location: https://api.whatsapp.com/send?phone=5575991172929&text=Olá%2C+estou+entrando+em+contato+pelo+site");
+      exit();
+   
+   } 
+   
+   header("location: https://web.whatsapp.com/send?phone=5575991172929&text=Olá%2C+estou+entrando+em+contato+pelo+site");	
+   exit(); 
+
+});
