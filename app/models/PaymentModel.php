@@ -9,6 +9,7 @@ class PaymentModel{
    public static function savePayment(
       string $user_uuid,
       string $cookie_id,
+      string $amout,
       string $payment_id,
       string $status,
       string $status_detail,
@@ -23,6 +24,7 @@ class PaymentModel{
             orders(
                user_uuid,
                cookie_id,
+               amout,
                payment_id,
                status,
                status_detail,
@@ -32,6 +34,7 @@ class PaymentModel{
          VALUES(
             :user_uuid,
             :cookie_id,
+            :amout,
             :payment_id,
             :status,
             :status_detail,
@@ -40,6 +43,7 @@ class PaymentModel{
          )",[
             ":user_uuid"=>$user_uuid,
             ":cookie_id"=>$cookie_id,
+            ":amout"=>$amout,
             ":payment_id"=>$payment_id,
             ":status"=>$status,
             ":status_detail"=>$status_detail,

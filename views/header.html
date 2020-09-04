@@ -101,18 +101,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
          <div class="col-md-6 logo-w3layouts text-center">
             <h1 class="logo-w3layouts">
                <a class="navbar-brand" href="/">
-                  Pidi Store </a>
+                  Pidi Store 
+               </a>
             </h1>
          </div>
 
          <div class="col-md-3 top-info-cart text-right mt-lg-4">
             <ul class="cart-inner-info">
                
-               <!-- <li class="button-log">
-                  <a class="btn-open" href="#">
-                     <span class="fa fa-user" aria-hidden="true"></span>
-                  </a>
-               </li> -->
+
+               {if="$signin == true"}
+                
+                  <li class="button-log">
+                     <a class="btn-open" href="/profile">
+                        <span class="fa fa-user" aria-hidden="true"></span>
+                     </a>
+                  </li>
+               
+               {/if}
                
                <li class="galssescart galssescart2 cart cart box_1">
                   <button class="top_googles_cart">

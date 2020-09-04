@@ -55,9 +55,10 @@ $app->post('/payment', function (Request $request, Response $response, $args) {
 
    if (
       !isset($_POST["token"]) || trim($_POST["token"]) === "" ||
-      !isset($_POST["payment_method_id"]) || trim($_POST["payment_method_id"]) === ""
+      !isset($_POST["payment_method_id"]) || trim($_POST["payment_method_id"]) === "" ||
+      !isset($_POST["email"]) || trim($_POST["email"]) === ""
    ){
-
+     
       setError('Pagamento falhou, tente novamente');
       header('location: /payment');
       exit();
@@ -84,13 +85,13 @@ $app->post('/payment', function (Request $request, Response $response, $args) {
 
    $payment = new MercadoPago\Payment();
    
-   $payment->transaction_amount = $total_price;
+   $payment->transaction_amount = (float)$total_price;
    $payment->token              = $_POST["token"];
    $payment->description        = "Compra na PidiStore";
    $payment->installments       = 1;
    $payment->payment_method_id  = $_POST["payment_method_id"];
    $payment->payer = array(
-      "email"=>$_SESSION[SESSION_NAME]["email"]
+      "email"=>$_POST["email"]
    );
 
    $payment->save();
@@ -101,7 +102,6 @@ $app->post('/payment', function (Request $request, Response $response, $args) {
       !in_array(
          $status, [
             "approved",
-            "in_process",
             "in_process",
             "rejected"
          ]
@@ -119,6 +119,7 @@ $app->post('/payment', function (Request $request, Response $response, $args) {
    $payment_model->savePayment(
       $_SESSION[SESSION_NAME]["uuid"],
       $_SESSION[SESSION_NAME]["_id"],
+      $total_price,
       $payment->id,
       $payment->status,
       $payment->status_detail,
@@ -203,6 +204,7 @@ $app->post('/payment/ticket', function (Request $request, Response $response, $a
    $payment_model->savePayment(
       $_SESSION[SESSION_NAME]["uuid"],
       $_SESSION[SESSION_NAME]["_id"],
+      $total_price,
       $payment->id,
       $payment->status,
       $payment->status_detail,

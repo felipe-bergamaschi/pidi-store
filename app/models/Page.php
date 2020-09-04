@@ -11,11 +11,26 @@ class Page {
 	private $defaults = [
 		"header"=>true,
 		"footer"=>true,
-		"data"=>[]
+		"data"=>[
+         "signin"=>0
+      ]
 	];
 
 	public function __construct($opts = array(), $tpl_dir = "/views/"){
-		
+      
+      if (   
+         isset($_SESSION[SESSION_NAME]["_id"]) &&
+         isset($_SESSION[SESSION_NAME]["uuid"]) &&
+         isset($_SESSION[SESSION_NAME]["email"]) &&
+         isset($_SESSION[SESSION_NAME]["username"])
+      ){ 
+
+         $this->defaults["data"] = [
+            "signin"=>1
+         ];
+
+      }
+
 		$this->options = array_merge($this->defaults, $opts);
 
 		$config = array(

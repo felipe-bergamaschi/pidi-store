@@ -1,0 +1,120 @@
+<link href="http://pidistore.xyz/assets/css/checkout.css" rel='stylesheet' type='text/css' />
+
+{if="$msgError != ''"}
+<div class="black-alert">
+   
+   <div class="black-alert-text">
+      
+      <i class="material-icons material-error">error</i>
+      <p>{$msgError}</p>
+
+   </div>
+
+</div>
+{/if}
+
+{if="$msgSuccess != ''"}
+<div class="black-alert">
+    
+    <div class="black-alert-text">
+        
+        <i class="material-icons material-success">check_circle</i>
+        <p>{$msgSuccess}</p>
+
+    </div>
+
+</div>
+{/if}
+
+<div class="banner_inner" style="background: url(http://pidistore.xyz/assets/img/2.jpg)no-repeat 0px -55px;">
+   <div class="services-breadcrumb">
+      <div class="inner_breadcrumb">
+
+         <ul class="short">
+            <li>
+               <a href="/">Início</a>
+               <i>|</i>
+            </li>
+            <li>Detalhes do pedido</li>
+         </ul>
+      </div>
+   </div>
+
+</div>
+
+<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+
+   <div class="container">
+
+      <div class="inner-sec-shop px-lg-4 px-3">
+         
+         <h3 class="tittle-w3layouts my-lg-4 mt-3"> Detalhes do pedido </h3>
+         
+         <div class="checkout-right" style="width: 100%; overflow-x: auto;">
+            
+            <!-- <h4>
+               Histórico de pedidos
+            </h4> -->
+            
+            <table class="timetable_sub" style="min-width: 800px;">
+            
+               <thead>
+                  <tr>
+                     <!-- <th>SL No.</th> -->
+                     <th>Produto</th>
+                     <th>Nome do produto</th>
+                     <th>Personagem</th>
+                     <th>Preço</th>
+
+                     <th>Quantidade</th>
+                  </tr>
+               </thead>
+               
+               <tbody>
+                  
+                  {loop="$order_detail"}
+
+                     <tr class="rem1">
+                        
+                        <!-- <td class="invert"> {$value._id} </td> -->
+                        
+                        <td class="invert-image">
+                           <a >
+                              <img src="http://pidistore.xyz/assets/img/tibia.png" alt=" " class="img-responsive" style="width: 80px; height: 80px; object-fit: contain;">
+                           </a>
+                        </td>
+
+                        <td class="invert"> {$value.qtd} Tibia Coins </td>
+
+                        <td class="invert"> {$value.player_id} </td>
+
+                        <td class="invert format-price"> {$value.value} </td>
+
+                        <td class="invert"> {$value.amout} </td>
+
+                     </tr>
+                  
+                  {/loop}
+
+               </tbody>
+         
+            </table>
+         
+         </div>
+         
+      </div>
+
+   </div>
+</section>
+
+<script>
+
+function updateCart(e){
+
+   const data = e.id + "-" + e.options[e.selectedIndex].value
+
+   location.href = "/my-cart/"+ data +"/update"
+
+}
+
+</script>

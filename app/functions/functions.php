@@ -63,3 +63,13 @@ function validateUsername($username){
    return true;
 
 }
+
+function statusReturn($status){
+
+   if    ($status === "approved"){ return "Aprovado"; }
+   elseif($status === "in_process"){ return "Em processo"; }
+   elseif($status === "rejected"){ return "Rejeitado"; }
+   elseif($status === "pending"){ return "Aguardando pagamento"; }
+
+
+}
